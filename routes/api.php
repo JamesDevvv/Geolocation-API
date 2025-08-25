@@ -25,7 +25,7 @@ Route::get('/me', [UserController::class, 'me'])->middleware('auth:sanctum');
 
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/home', [UserController::class, 'home']);
+    Route::post('/home', [UserController::class, 'home']);
     Route::post('/search-ip', [UserController::class, 'searchIp']);
     Route::get('/clear-search', [UserController::class, 'clearSearch']);
     

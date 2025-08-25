@@ -16,6 +16,7 @@ class UserService
     $credentials = $request->validate([
         'email'    => ['required','email'],
         'password' => ['required','string'],
+        'ip' => ['required','string'],
     ]);
 
     $user = User::where('email', $credentials['email'])->first();
@@ -29,7 +30,7 @@ class UserService
     }
 
     
-    $ip = $request->ip();
+    $ip = $request->ip;
 
     
     $geo = \Illuminate\Support\Facades\Http::get("http://ip-api.com/json/{$ip}")->json();
@@ -76,13 +77,13 @@ class UserService
     
     public function home(Request $request)
     {
-        $ip = $request->ip();
+        $ip = $request->ip;
 
         
         $geo = Http::get("http://ip-api.com/json/{$ip}")->json();
 
         return response()->json([
-            'ip'  => $ip,
+            'ip'  => $request->ip,
             'geo' => $geo,
         ]);
     }
