@@ -14,9 +14,9 @@ return new class extends Migration
         
                     Schema::create('search_histories', function (Blueprint $table) {
                 $table->id();
-                $table->foreignId('user_id')->constrained()->onDelete('cascade'); // link to users
-                $table->string('ip');        // searched ip
-                $table->json('geo')->nullable(); // store geo data (JSON)
+                $table->foreignId('user_id')->constrained()->onDelete('cascade'); 
+                $table->string('ip');        
+                $table->json('geo')->nullable(); 
                 $table->timestamps();
             });
 
