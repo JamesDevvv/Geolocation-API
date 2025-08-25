@@ -12,9 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         
-            Schema::create('search_histories', function (Blueprint $table) {
+                    Schema::create('search_histories', function (Blueprint $table) {
                 $table->id();
-                $table->string('content');
+                $table->foreignId('user_id')->constrained()->onDelete('cascade'); // link to users
+                $table->string('ip');        // searched ip
+                $table->json('geo')->nullable(); // store geo data (JSON)
                 $table->timestamps();
             });
 
